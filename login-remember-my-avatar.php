@@ -75,18 +75,18 @@ EOH;
 		echo <<<EOH
 			<script>
 				(function() {
-					if ( typeof window._wpLoginRememberMyAvatar == 'undefined' ) {
+					if ( typeof _wpLoginRememberMyAvatar == 'undefined' ) {
 						return;
 					}
-					var login_field_p = document.getElementById('user_login').parentNode.parentNode;
-	
+
 					var new_html = '<p class="login-remember-my-avatar">';
-					new_html += 'Welcome back, <span class="dispaly-name">' + window._wpLoginRememberMyAvatar.display_name + '</span>'
-					new_html += _wpLoginRememberMyAvatar.avatar;;
-					new_html += '<span><a href="' + window._wpLoginRememberMyAvatar.forget_me_url + '">Not You?</a></span>';
-					new_html += '<input type="hidden" name="log" value="' + window._wpLoginRememberMyAvatar.user_login + '">';
+					new_html += 'Welcome back, <span class="dispaly-name">' + _wpLoginRememberMyAvatar.display_name + '</span>'
+					new_html += _wpLoginRememberMyAvatar.avatar;
+					new_html += '<span><a href="' + _wpLoginRememberMyAvatar.forget_me_url + '">Not You?</a></span>';
+					new_html += '<input type="hidden" name="log" value="' + _wpLoginRememberMyAvatar.user_login + '">';
 					new_html += '</p>';
-	
+
+					var login_field_p = document.getElementById('user_login').parentNode.parentNode;	
 					login_field_p.outerHTML = new_html;
 				})();
 			</script>
@@ -94,9 +94,4 @@ EOH;
 	}
 	
 }
-
-
-add_action( 'plugins_loaded', '_login_remember_my_avatar' );
-function _login_remember_my_avatar() {
-	new WordPress_Plugin_Login_Remember_My_Avatar();
-}
+new WordPress_Plugin_Login_Remember_My_Avatar();
